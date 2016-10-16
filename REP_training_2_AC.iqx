@@ -1,0 +1,296 @@
+﻿***************************************************************
+RELATIONAL TRAINING (AC relations)
+via relational evaluation procedure
+***************************************************************
+Author: 		Ian Hussey (ian.hussey@ugent.be)
+Last updated: 	16-10-2016
+
+*********************
+stimuli exemplars 
+*********************
+
+<item A1>
+/ 1 = "A1.png"
+</item>
+
+<item A2>
+/ 1 = "A2.png"
+</item>
+
+<item C1>
+/ 1 = "C1.png"
+</item>
+
+<item C2>
+/ 1 = "C2.png"
+</item>
+
+*********************
+general variables
+*********************
+
+<defaults>
+/ screencolor = black
+/ txcolor = white
+/ fontstyle = ("Arial", 5.00%)
+/ inputdevice = keyboard
+/ validkeys = (" ", "t")
+/ halign = center
+/ Com1BaudRate = 9600
+</defaults>
+
+<expt>
+/ blocks = [1 = block1]
+</expt>
+
+<variables>
+/ group = (1 of 1) (block1 = REP_training_2_AC_block1)
+</variables>
+
+<values>
+/ errors_in_block_counter = 0
+</values>
+
+<expressions>
+/ n_errors_in_block = (values.errors_in_block_counter)
+</expressions>
+
+********************* 
+stimuli
+*********************
+
+<picture A1_left>
+/ numitems = 1
+/ items = A1
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture A1_right>
+/ numitems = 1
+/ items = A1
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture A2_left>
+/ numitems = 1
+/ items = A2
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture A2_right>
+/ numitems = 1
+/ items = A2
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C1_left>
+/ numitems = 1
+/ items = C1
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C1_right>
+/ numitems = 1
+/ items = C1
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C2_left>
+/ numitems = 1
+/ items = C2
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C2_right>
+/ numitems = 1
+/ items = C2
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+*********************
+labels
+*********************
+
+<text left_key>
+/ numitems = 1
+/ items = ("Press E for SMALLER")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (25, 90)
+</text>
+
+<text right_key>
+/ numitems = 1
+/ items = ("Press I for LARGER")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (75, 90)
+</text>
+
+<text continue>
+/ numitems = 1
+/ items = ("Press the spacebar to continue")
+/ txcolor = white
+/ txbgcolor = black
+/ position = (50, 95)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text correctMessage>
+/ numitems = 1
+/ items = ("CORRECT")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (50, 50)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text errorMessage>
+/ numitems = 1
+/ items = ("WRONG")
+/ txcolor = red
+/ txbgcolor = black
+/ position = (50, 50)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text blank>
+/ numitems = 1
+/ items = ("                     ")
+/ txcolor = white
+/ txbgcolor = black
+/ erase = false
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+*********************
+trials
+*********************
+
+<trial A1_C1_1> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("e")
+/ responsemessage = ("e", correctMessage, 750)
+/ responsemessage = ("i", errorMessage, 1500)
+/ stimulustimes = [500 = left_key, right_key; 1000 = A1_left, C1_right]
+/ ontrialend = [if (trial.A1_C1_1.error == true) values.errors_in_block_counter = values.errors_in_block_counter + 1]
+</trial>
+
+<trial A1_C1_2> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("i")
+/ responsemessage = ("i", correctMessage, 750)
+/ responsemessage = ("e", errorMessage, 1500)
+/ stimulustimes = [500 = left_key, right_key; 1000 = A1_right, C1_left]
+/ ontrialend = [if (trial.A1_C1_2.error == true) values.errors_in_block_counter = values.errors_in_block_counter + 1]
+</trial>
+
+<trial A2_C2_1> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("i")
+/ responsemessage = ("e", correctMessage, 750)
+/ responsemessage = ("i", errorMessage, 1500)
+/ stimulustimes = [500 = left_key, right_key; 1000 = A2_left, C2_right]
+/ ontrialend = [if (trial.A2_C2_1.error == true) values.errors_in_block_counter = values.errors_in_block_counter + 1]
+</trial>
+
+<trial A2_C2_2> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("e")
+/ responsemessage = ("i", correctMessage, 750)
+/ responsemessage = ("e", errorMessage, 1500)
+/ stimulustimes = [500 = left_key, right_key; 1000 = A2_right, C2_left]
+/ ontrialend = [if (trial.A2_C2_2.error == true) values.errors_in_block_counter = values.errors_in_block_counter + 1]
+</trial>
+
+< trial exit>
+/ trialcode = "exit"
+/ stimulustimes = [1 = blank]
+/ trialduration = 1000
+</trial>
+
+*********************
+block
+*********************  
+
+<block REP_training_2_AC_block1>
+/ preinstructions = (instructions_1)
+/ trials = [1-16 = noreplacenorepeat(A1_C1_1, A1_C1_2, A2_C2_1, A2_C2_2)]
+/ branch = [if (expressions.n_errors_in_block > 2 && currentblocknumber < 5) block.REP_training_2_AC_block2 else block.exit]
+</block>
+
+<block REP_training_2_AC_block2>
+/ onblockbegin = [values.errors_in_block_counter = 0]
+/ preinstructions = (instructions_2)
+/ trials = [1-16 = noreplacenorepeat(A1_C1_1, A1_C1_2, A2_C2_1, A2_C2_2)]
+/ branch = [if (expressions.n_errors_in_block > 2 && currentblocknumber < 5) block.REP_training_2_AC_block3 else block.exit]
+</block>
+
+<block REP_training_2_AC_block3>
+/ onblockbegin = [values.errors_in_block_counter = 0]
+/ preinstructions = (instructions_2)
+/ trials = [1-16 = noreplacenorepeat(A1_C1_1, A1_C1_2, A2_C2_1, A2_C2_2)]
+/ branch = [if (expressions.n_errors_in_block > 2 && currentblocknumber < 5) block.REP_training_2_AC_block4 else block.exit]
+</block>
+
+<block REP_training_2_AC_block4>
+/ onblockbegin = [values.errors_in_block_counter = 0]
+/ preinstructions = (instructions_2)
+/ trials = [1-16 = noreplacenorepeat(A1_C1_1, A1_C1_2, A2_C2_1, A2_C2_2)]
+/ branch = [if (expressions.n_errors_in_block > 2 && currentblocknumber < 5) block.REP_training_2_AC_block5 else block.exit]
+</block>
+
+<block REP_training_2_AC_block5>
+/ onblockbegin = [values.errors_in_block_counter = 0]
+/ preinstructions = (instructions_2)
+/ trials = [1-16 = noreplacenorepeat(A1_C1_1, A1_C1_2, A2_C2_1, A2_C2_2)]
+</block>
+
+<block exit>
+/ trials = [1 = exit]
+</block>
+
+*********************
+instructions
+*********************
+
+<instruct>
+/ fontstyle = ("Arial", 3.00%)
+/ inputdevice = keyboard
+/ nextkey = (" ")
+/ windowsize = (800px, 600px)
+</instruct>
+
+<page instructions_1>
+^^The next task is similar to what you've just done. However this time we will present some new characters along with some you've seen before.
+^^Again, your job is to figure out the relationship between the characters. 
+^^Note: you will only move on with the experiment once you have learned to respond very ACCURATELY.
+^^Please place your fingers on the E and I keys.
+</page>
+
+<page instructions_2>
+^^Well done. We will give you another opportunity to practice the same task.
+^^Note: you will only move on with the experiment once you have learned to respond very ACCURATELY.
+^^Please place your fingers on the E and I keys.
+</page>
+
+********************* 
+Test monkey
+*********************
+
+<monkey>
+/ latencydistribution = normal(500, 100)
+/ percentcorrect = 100
+</monkey>

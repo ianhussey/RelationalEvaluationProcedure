@@ -1,0 +1,240 @@
+﻿***************************************************************
+RELATIONAL TESTING (BC relations)
+via relational evaluation procedure
+***************************************************************
+Author: 		Ian Hussey (ian.hussey@ugent.be)
+Last updated: 	16-10-2016
+
+*********************
+stimuli exemplars 
+*********************
+
+<item B1>
+/ 1 = "B1.png"
+</item>
+
+<item B2>
+/ 1 = "B2.png"
+</item>
+
+<item C1>
+/ 1 = "C1.png"
+</item>
+
+<item C2>
+/ 1 = "C2.png"
+</item>
+
+*********************
+general variables
+*********************
+
+<defaults>
+/ screencolor = black
+/ txcolor = white
+/ fontstyle = ("Arial", 5.00%)
+/ inputdevice = keyboard
+/ validkeys = (" ", "t")
+/ halign = center
+/ Com1BaudRate = 9600
+</defaults>
+
+<expt>
+/ blocks = [1 = block1]
+</expt>
+
+<variables>
+/ group = (1 of 1) (block1 = REP_testing_BC)
+</variables>
+
+<values>
+/ errors_in_block_counter = 0
+</values>
+
+<expressions>
+/ n_errors_in_block = (values.errors_in_block_counter)
+</expressions>
+
+********************* 
+stimuli
+*********************
+
+<picture B1_left>
+/ numitems = 1
+/ items = B1
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture B1_right>
+/ numitems = 1
+/ items = B1
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture B2_left>
+/ numitems = 1
+/ items = B2
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture B2_right>
+/ numitems = 1
+/ items = B2
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C1_left>
+/ numitems = 1
+/ items = C1
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C1_right>
+/ numitems = 1
+/ items = C1
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C2_left>
+/ numitems = 1
+/ items = C2
+/ position = (35, 50)
+/ size = (25%, 25%)
+</picture>
+
+<picture C2_right>
+/ numitems = 1
+/ items = C2
+/ position = (65, 50)
+/ size = (25%, 25%)
+</picture>
+
+*********************
+labels
+*********************
+
+<text left_key>
+/ numitems = 1
+/ items = ("Press E for SMALLER")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (25, 90)
+</text>
+
+<text right_key>
+/ numitems = 1
+/ items = ("Press I for LARGER")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (75, 90)
+</text>
+
+<text continue>
+/ numitems = 1
+/ items = ("Press the spacebar to continue")
+/ txcolor = white
+/ txbgcolor = black
+/ position = (50, 95)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text correctMessage>
+/ numitems = 1
+/ items = ("CORRECT")
+/ txcolor = lightgreen
+/ txbgcolor = black
+/ position = (50, 50)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text errorMessage>
+/ numitems = 1
+/ items = ("WRONG")
+/ txcolor = red
+/ txbgcolor = black
+/ position = (50, 50)
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+<text blank>
+/ numitems = 1
+/ items = ("                     ")
+/ txcolor = white
+/ txbgcolor = black
+/ erase = false
+/ fontstyle = ("Arial", 5.00%, true)
+</text>
+
+*********************
+trials
+*********************
+
+<trial B1_C1_1> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("i")
+/ stimulustimes = [500 = left_key, right_key; 1000 = B1_left, C1_right]
+</trial>
+
+<trial B1_C1_2> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("e")
+/ stimulustimes = [500 = left_key, right_key; 1000 = B1_right, C1_left]
+</trial>
+
+<trial B2_C2_1> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("e")
+/ stimulustimes = [500 = left_key, right_key; 1000 = B2_left, C2_right]
+</trial>
+
+<trial B2_C2_2> 
+/ inputdevice = keyboard
+/ validresponse = ("e", "i")
+/ correctresponse = ("i")
+/ stimulustimes = [500 = left_key, right_key; 1000 = B2_right, C2_left]
+</trial>
+
+*********************
+block
+*********************  
+
+<block REP_testing_BC>
+/ preinstructions = (instructions)
+/ trials = [1-16 = noreplacenorepeat(B1_C1_1, B1_C1_2, B2_C2_1, B2_C2_2)]
+</block>
+
+*********************
+instructions
+*********************
+
+<instruct>
+/ fontstyle = ("Arial", 3.00%)
+/ inputdevice = keyboard
+/ nextkey = (" ")
+/ windowsize = (800px, 600px)
+</instruct>
+
+<page instructions>
+^^IMPORTANT: This task is CRUCIAL to the experiment - please take your time and try to respond as ACCURATELY as possible.
+^^In the next task, you will have to use what you learned in the previous tasks to figure out the relationships between the characters here.
+^^IMPORTANT: We will no longer tell you when you are correct or incorrect. This part of the experiment is designed to test what you have previously learned.
+^^Please place your fingers on the E and I keys.
+</page>
+
+********************* 
+Test monkey
+*********************
+
+<monkey>
+/ latencydistribution = normal(500, 100)
+/ percentcorrect = 100
+</monkey>

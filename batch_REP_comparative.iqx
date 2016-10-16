@@ -1,0 +1,20 @@
+﻿***************************************************************
+BATCH SCRIPT - Run all scripts sequentially
+***************************************************************
+Author: Ian Hussey (ian.hussey@ugent.be)
+Last updated: 14-10-2016
+
+Script provides the code for a batch file that adds a consent form to an Inquisit Experiment.
+ 
+If participants do not agree to participate in the experiment, the entire batch file
+gets aborted via function script.abort() in the consent.iqx script
+
+<batch>
+/ file="consent.iqx"
+/ file="demographics.iqx"
+/ file="REP_training_1_AB.iqx"
+/ file="REP_training_2_AC.iqx"
+/ file="REP_training_3_ABAC.iqx"
+/ file="REP_testing_BC.iqx"
+/ file="strategies_question.iqx"
+</batch>

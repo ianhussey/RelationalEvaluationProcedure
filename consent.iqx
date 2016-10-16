@@ -1,0 +1,69 @@
+﻿***************************************************************
+CONSENT FORM
+***************************************************************
+Authors: Ian Hussey (ian.hussey@ugent.be)
+last updated: 14-10-16
+
+*********************
+general variables
+*********************
+
+Script provides code to add a consent form (The Millisecond Consent Form is used
+as an example).
+This script can be used as the starting script in a batch file.
+
+If participants do not want to participate in the experiment, the entire batch file
+gets aborted via function script.abort()
+
+The consentform as htm file does not take up the entire screen space to leave room for response buttons
+
+<html Consent>
+/ items = ("consent.htm")
+/ position = (50%, 40%)
+/ size = (70%, 90%)
+</html>
+
+*********************
+text
+*********************
+
+<text agree>
+/ items = ("I agree to participate")
+/ position = (75%, 90%)
+/ fontstyle = ("Arial", 2%, false, false, false, false, 5, 1)
+/ txcolor = white
+/ txbgcolor = black
+/ size = (15%, 10%)
+/ vjustify = center
+</text>
+
+<text disagree>
+/ items = ("I do NOT agree to participate")
+/ position = (25%, 90%)
+/ fontstyle = ("Arial", 2%, false, false, false, false, 5, 1)
+/ txcolor = white
+/ txbgcolor = black
+/ size = (15%, 10%)
+/ vjustify = center
+</text>
+
+*********************
+trials
+*********************
+if no consent the script as well as all other scripts in batch file
+
+<trial Consent>
+/ inputdevice = mouse
+/ stimulusframes = [1 = Consent, agree, disagree]
+/ validresponse = (agree, disagree)
+/ monkeyresponse = ("agree")
+/ ontrialend = [if (trial.Consent.response == "disagree") script.abort()]
+</trial>
+
+*********************
+block
+*********************
+
+<block Consent>
+/ trials = [1 = Consent]
+</block>
